@@ -7,10 +7,6 @@ from app.form import MyForm
 from werkzeug.utils import secure_filename
 from pathlib import Path
 
-app.config['SECRET_KEY']
-app.config['UPLOAD_FOLDER']
-app.config['ALLOWED_EXTENSIONS']
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
