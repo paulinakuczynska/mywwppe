@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>MakeYourWorkWithPowerPointEasier</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="header">
+        <p>Description</p>
+    </div>
+    <div class="parent">
+        <div class="div1">
+            {% block upload %}{% endblock %}
+        </div>
+        <div class="div2">
+            {% block colors %}{% endblock %}
+        </div>
+        <div class="div3">
+            {% block margins %}{% endblock %}
+        </div>
+        <div class="div4">
+            {% block proceed %}{% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+        {% block footer %}MYWWPPE{% endblock footer %}
+    </div>
+    <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+</body>
+</html>
