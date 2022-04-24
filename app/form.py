@@ -26,6 +26,7 @@ class MyForm(FlaskForm):
         ])
     hex2 = StringField(
         label='hex2',
+        name='hex',
         validators=[
             InputRequired(),
             Regexp('^[a-zA-Z0-9]{6,6}$', message='hex value must contain exactly six letters and/or digits'),

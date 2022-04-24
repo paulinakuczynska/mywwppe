@@ -1,5 +1,3 @@
-# out of the app folder so it's together with run.py?
-
 from os import environ
 from pathlib import Path
 

@@ -6,6 +6,8 @@ from flask import flash, redirect, render_template, request
 from app.form import MyForm
 from werkzeug.utils import secure_filename
 from pathlib import Path
+from app.models import manage_files, custom_colors
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -14,6 +16,10 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def set_colors_form():
     form = MyForm()
+    v = [form.hex1.data, form.hex2.data]
+    values = list(v)
+    n = [form.name1.data, form.name2.data]
+    names = list(n)
     if form.validate_on_submit():
         if request.method == 'POST':
             if request.files:
@@ -24,7 +30,10 @@ def set_colors_form():
                 if allowed_file(file.filename):
                     filename = secure_filename(file.filename)
                     file.save(Path(app.config['UPLOAD_FOLDER'], filename))
-                    flash('File uploaded')
+                    flash(f'File {filename} uploaded')
+                    manage_files.prepare_file_for_editing(filename, 'setcolors.zip')
+                    custom_colors.set_custom_colors(names, values)
+                    manage_files.prepare_file_for_user('nowy.pptx')
                     return redirect(request.url)
                 else:
                     flash('That file extension is not allowed')
