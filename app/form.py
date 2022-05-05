@@ -1,10 +1,10 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import InputRequired, Regexp
+from flask_wtf import FlaskForm, Form
+from wtforms import StringField, SubmitField, FormField, FieldList
+from wtforms.validators import Regexp, Optional
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 
-class MyForm(FlaskForm):
+class UploadForm(Form):
     upload = FileField(
         label='file',
         validators=[
@@ -12,31 +12,29 @@ class MyForm(FlaskForm):
             FileAllowed(['pptx'], '.pptx only')
         ]
     )
-    hex1 = StringField(
-        label='hex1',
-        validators=[
-            InputRequired(),
-            Regexp('^[a-zA-Z0-9]{6,6}$', message='hex value must contain exactly six letters and/or digits'),
-        ])
-    name1 = StringField(
-        label='name1',
-        validators=[
-            InputRequired(),
-            Regexp('^[\w ]*$', message='you can use letters, digits, spaces and underscores')
-        ])
-    hex2 = StringField(
-        label='hex2',
-        name='hex',
-        validators=[
-            InputRequired(),
-            Regexp('^[a-zA-Z0-9]{6,6}$', message='hex value must contain exactly six letters and/or digits'),
-        ])
-    name2 = StringField(
-        label='name2',
-        validators=[
-            InputRequired(),
-            Regexp('^[\w ]*$', message='you can use letters, digits, spaces and underscores')
-        ])
-    set_colors = SubmitField(
-        label='set custom colors'
+
+class SubmitForm(Form):
+    submit = SubmitField(
+        label='submit'
     )
+
+class ColorsForm(Form):
+    value = StringField(
+        label='value',
+        validators=[
+            Optional(),
+            Regexp('^[a-zA-Z0-9]{6,6}$', message='hex value must contain exactly six letters and/or digits'),
+        ]
+    )
+    name = StringField(
+        label='name',
+        validators=[
+            Optional(),
+            Regexp('^[\w ]*$', message='you can use letters, digits, spaces and underscores')
+        ]
+    )
+
+class CustomColors(FlaskForm):
+    upload = FormField(UploadForm)
+    colors = FieldList(FormField(ColorsForm), min_entries=10, max_entries=51)
+    submit = FormField(SubmitForm)

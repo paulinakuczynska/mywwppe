@@ -1,0 +1,20 @@
+{% extends "base.html.jinja" %}
+
+{% block description %}
+    <p>Set custom colors</p>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" enctype=multipart/form-data invalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.upload() }}
+        </p>
+        <p>
+            {{ form.colors() }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}
