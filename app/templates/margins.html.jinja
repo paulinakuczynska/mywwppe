@@ -3,3 +3,39 @@
 {% block description %}
     <p>Set margins for placeholders</p>
 {% endblock %}
+
+{% block content %}
+    <form action="" method="post" enctype=multipart/form-data novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.upload() }}
+        </p>
+        <p>
+            {{ form.left() }}
+            {% for error in form.left.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+                <p>
+            {{ form.right() }}
+            {% for error in form.right.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+                <p>
+            {{ form.top() }}
+            {% for error in form.top.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+                <p>
+            {{ form.bottom() }}
+            {% for error in form.bottom.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}

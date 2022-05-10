@@ -7,14 +7,29 @@
 {% block content %}
     <form action="" method="post" enctype=multipart/form-data invalidate>
         {{ form.hidden_tag() }}
-        <p>
+        <div>
             {{ form.upload() }}
-        </p>
-        <p>
-            {{ form.colors() }}
-        </p>
-        <p>
+        </div>
+        <div>
+            {% for subfield in form.colors %}
+                <div class="test">
+                <label for="value">value:</label>
+                {{ subfield.form.value() }}
+                <label for="name">name:</label>
+                {{ subfield.form.name() }}
+                </div>
+                {% if subfield.errors %}
+                    {% for error in subfield.form.value.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                    {% for error in subfield.form.name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div>
             {{ form.submit() }}
-        </p>
+        </div>
     </form>
 {% endblock %}

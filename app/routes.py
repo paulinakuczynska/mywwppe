@@ -3,10 +3,10 @@
 
 from app import app
 from flask import flash, redirect, render_template, request
-from app.form import CustomColors
+from app.form import CustomColors, CustomMargins
 from werkzeug.utils import secure_filename
 from pathlib import Path
-from app.models import manage_files, custom_colors
+from app.models import manage_files, custom_colors, custom_margins
 
 
 def allowed_file(filename):
@@ -20,6 +20,7 @@ def home():
 @app.route('/colors', methods=['GET', 'POST'])
 def colors():
     form = CustomColors()
+    # form validation
     if form.validate_on_submit():
         if request.method == 'POST':
             if request.files:
@@ -31,7 +32,7 @@ def colors():
                     filename = secure_filename(file.filename)
                     file.save(Path(app.config['UPLOAD_FOLDER'], filename))
                     flash(f'File {filename} uploaded')
-
+                    # lists of data of fieldlist elements
                     values = []
                     names = []
                     for field in form.colors.data:
@@ -40,15 +41,13 @@ def colors():
                         if v is not '':
                             values.append(v)
                             names.append(n)
-                    flash(values)
-                    flash(names)
+                    # xml customization if at least one color was given
                     if values:
                         manage_files.prepare_file_for_editing(filename, 'setcolors.zip')
                         custom_colors.set_custom_colors(names, values)
                         manage_files.prepare_file_for_user('nowy.pptx')
                     else:
                         flash('No color was given')
-                    
                     return redirect(request.url)
                 else:
                     flash('That file extension is not allowed')
@@ -57,5 +56,24 @@ def colors():
     return render_template('colors.html.jinja', title='Set custom colors', form=form)
 
 @app.route('/margins', methods=['GET', 'POST'])
-def margins(): 
-    return render_template('margins.html.jinja')
+def margins():
+    form = CustomMargins()
+    if form.validate_on_submit():
+        if request.method == 'POST':
+            if request.files:
+                file = request.files['upload-upload']
+                if file.filename == '':
+                    flash('No file name')
+                    return redirect(request.url)
+                if allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(Path(app.config['UPLOAD_FOLDER'], filename))
+                    flash(f'File {filename} uploaded')
+                    l = form.left.data
+                    r = form.right.data
+                    t = form.top.data
+                    b = form.bottom.data
+                    manage_files.prepare_file_for_editing(filename, 'setmargins.zip')
+                    custom_margins.set_custom_margins(l, r, t, b)
+                    manage_files.prepare_file_for_user('nowy.pptx')
+    return render_template('margins.html.jinja', form=form)
