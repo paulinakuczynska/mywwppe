@@ -60,7 +60,7 @@ class ColorsForm(Form):
 
 class CustomColors(FlaskForm):
     upload = FormField(UploadForm)
-    colors = FieldList(FormField(ColorsForm), min_entries=10, max_entries=51)
+    colors = FieldList(FormField(ColorsForm), min_entries=20, max_entries=51)
     submit = FormField(SubmitForm)
 
 class CustomMargins(FlaskForm):

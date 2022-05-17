@@ -2,7 +2,7 @@
 # todo: file size limit
 
 from app import app
-from flask import flash, redirect, render_template, request
+from flask import flash, redirect, render_template, request, send_file
 from app.form import CustomColors, CustomMargins
 from werkzeug.utils import secure_filename
 from pathlib import Path
@@ -31,7 +31,6 @@ def colors():
                 if allowed_file(file.filename):
                     filename = secure_filename(file.filename)
                     file.save(Path(app.config['UPLOAD_FOLDER'], filename))
-                    flash(f'File {filename} uploaded')
                     # lists of data of fieldlist elements
                     values = []
                     names = []
@@ -45,7 +44,8 @@ def colors():
                     if values:
                         manage_files.prepare_file_for_editing(filename, 'setcolors.zip')
                         custom_colors.set_custom_colors(names, values)
-                        manage_files.prepare_file_for_user('nowy.pptx')
+                        manage_files.prepare_file_for_user('new.pptx')
+                        return render_template('downloads.html.jinja')
                     else:
                         flash('No color was given')
                     return redirect(request.url)
@@ -68,12 +68,16 @@ def margins():
                 if allowed_file(file.filename):
                     filename = secure_filename(file.filename)
                     file.save(Path(app.config['UPLOAD_FOLDER'], filename))
-                    flash(f'File {filename} uploaded')
                     l = form.left.data
                     r = form.right.data
                     t = form.top.data
                     b = form.bottom.data
                     manage_files.prepare_file_for_editing(filename, 'setmargins.zip')
                     custom_margins.set_custom_margins(l, r, t, b)
-                    manage_files.prepare_file_for_user('nowy.pptx')
+                    manage_files.prepare_file_for_user('new.pptx')
+                    return render_template('downloads.html.jinja')
     return render_template('margins.html.jinja', form=form)
+
+@app.route('/return')
+def return_file():
+		return send_file(Path('uploads', 'new.pptx'), attachment_filename='new.pptx')
