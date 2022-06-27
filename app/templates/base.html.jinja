@@ -6,10 +6,13 @@
 </head>
 <body>
     <div>
-        {% block description %}{% endblock %}
+        {% block colors %}{% endblock %}
     </div>
     <div>
-        {% block content %}{% endblock %}
+        {% block margins %}{% endblock %}
+    </div>
+    <div>
+        {% block download %}{% endblock %}
     </div>
     <hr>
         {% with messages = get_flashed_messages() %}

@@ -1,10 +1,59 @@
 {% extends "base.html.jinja" %}
 
-{% block description %}
-    <p>This application...</p>
-{% endblock %}
-
-{% block content %}
-    <a href="/colors">Set custom colors</a><br>
-    <a href="/margins">Set margins of placeholders</a>
+{% block colors %}
+    <form action="" method="post" enctype=multipart/form-data invalidate>
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.upload() }}
+        </div>
+        <div>
+            <h2>Set custom colors</h2>
+            <p>
+                To set custom colors, enter the hex values in the value fields.
+                You can set from one to 20 colors. Specifying the color names is optional, 
+                they are the names displayed in PowerPoint. If your attached file 
+                has custom colors defined, they will be overwritten.
+            </p>
+        </div>
+        <div>
+            {% for subfield in form.colors %}
+                <div class="test">
+                <label for="value">value:</label>
+                {{ subfield.form.value() }}
+                <label for="name">name:</label>
+                {{ subfield.form.name() }}
+                </div>
+                {% if subfield.errors %}
+                    {% for error in subfield.form.value.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                    {% for error in subfield.form.name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div>
+            <h2>Remove custom colors</h2>
+            <p>
+                To remove custom colors select the checkbox below.
+            </p>
+        </div>
+        <div>
+            {{ form.remove_colors() }}
+        </div>
+        <div>
+            <h2>Remove margins for placeholders</h2>
+            <p>
+                To remove the default margins, which is 0.25 cm on the left and right
+                and 0.13 cm on the top and bottom, select the checkbox below.
+            </p>
+        </div>
+        <div>
+            {{ form.margins() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
 {% endblock %}

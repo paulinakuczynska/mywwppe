@@ -1,5 +1,3 @@
-from os import listdir
-from select import select
 from app import app
 from pathlib import Path
 import xml.etree.cElementTree as ET
@@ -14,13 +12,13 @@ class CustomMargins(ManageXml):
     tag4 = '{http://schemas.openxmlformats.org/presentationml/2006/main}txBody'
     tag5 = '{http://schemas.openxmlformats.org/drawingml/2006/main}bodyPr'
 
-    def __init__(self, left, right, top, bottom):
+    def __init__(self, left = 0, right = 0, top = 0, bottom = 0):
         self.left = left
         self.right = right
         self.top = top
         self.bottom = bottom
 
-    def set_margins(self):
+    def set_zero_margins(self):
         for file in super().collect_files(self.file_dir):
             tree = ET.parse(file)
             root = tree.getroot()

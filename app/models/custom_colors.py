@@ -25,3 +25,10 @@ class CustomColors(ManageXml):
             color_name.set('name', n)
             color_value.set('val', v)
         super().write_xml(tree, self.filepath)
+    
+    def remove_colors(self):
+        super().register_all_namespaces(self.filepath)
+        tree = ET.parse(self.filepath)
+        root = tree.getroot()
+        super().remove_subtags(root, self.custom_color_tag)
+        super().write_xml(tree, self.filepath)
