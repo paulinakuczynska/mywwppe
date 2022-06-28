@@ -19,7 +19,7 @@ The main goal of developing this application was to get acquainted with the Flas
 * Flask 2.0.2
 * Jinja2 3.0.3
 * WTForms 3.0.1
-The complete list of requirements is available in the requirements.txt file.
+* The complete list of requirements is available in the requirements.txt file.
 ## Setup
 ## References
 * [Flask documentation](https://flask.palletsprojects.com/en/2.0.x/)
