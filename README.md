@@ -22,10 +22,18 @@ The main goal of developing this application was to get acquainted with the Flas
 * The complete list of requirements is available in the requirements.txt file.
 ## Setup
 * [Install Python](https://www.python.org/downloads/) 3.8.10
-* Create a folder for the project 
-```mkdir projectname```
-* Create a Python virtual environment. This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer 
-```cd projectname<br/>python3 -m venv venv```
+* Create a folder for the project\
+```$ mkdir projectname```
+* Clone a repository on your computer\
+```
+$ cd projectname
+$ git clone https://github.com/paulinakuczynska/mywwppe.git
+```
+* Create a Python virtual environment. This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer\
+```$ python3 -m venv venv```
+* Activate a virtual environment\
+```$ . venv/bin/activate```
+* Install dependencies from requirements.txt ```pip install -r /path/to/requirements.txt```. If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from), or install packages separately:
 ## References
 * [Flask documentation](https://flask.palletsprojects.com/en/2.0.x/)
 * [The New Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
