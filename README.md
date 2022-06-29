@@ -21,30 +21,23 @@ The main goal of developing this application was to get acquainted with the Flas
 * WTForms 3.0.1
 * The complete list of requirements is available in the requirements.txt file.
 ## Setup
-[Install Python](https://www.python.org/downloads/)
+[Install Python](https://www.python.org/downloads/)\
 Clone a repository on your computer
 ```
 git clone https://github.com/paulinakuczynska/mywwppe.git
 ```
-Create a [Python virtual environment](https://flask.palletsprojects.com/en/2.1.x/installation/). This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer
+Create a [Python virtual environment](https://flask.palletsprojects.com/en/2.1.x/installation/) and activate it. This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer
 ```
 python3 -m venv venv
-```
-Activate a virtual environment
-```
 . venv/bin/activate
 ```
-Install dependencies from requirements.txt 
+Install dependencies from requirements.txt. If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from)
 ```
 pip install -r requirements.txt
 ```
-If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from)
-In the project folder set the FLASK_APP environment variable 
+In the project folder set the FLASK_APP environment variable and run the application
 ```
 export FLASK_APP=run.py
-``` 
-and run the application with 
-```
 flask run
 ```
 Due to that launching the application and its environment is necessary each time it is started, it is convenient to create an alias, e.g.
