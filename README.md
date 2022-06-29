@@ -22,13 +22,8 @@ The main goal of developing this application was to get acquainted with the Flas
 * The complete list of requirements is available in the requirements.txt file.
 ## Setup
 * [Install Python](https://www.python.org/downloads/) 3.8.10
-* Create a folder for the project
-```
-$ mkdir projectname
-```
 * Clone a repository on your computer
 ```
-$ cd projectname
 $ git clone https://github.com/paulinakuczynska/mywwppe.git
 ```
 * Create a [Python virtual environment](https://flask.palletsprojects.com/en/2.1.x/installation/). This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer
