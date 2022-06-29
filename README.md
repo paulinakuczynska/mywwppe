@@ -24,9 +24,9 @@ The main goal of developing this application was to get acquainted with the Flas
 * [Install Python](https://www.python.org/downloads/) 3.8.10
 * Create a folder for the project\
 ```mkdir projectname```
-* Create a Python virtual environment. This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer
+* Create a Python virtual environment. This step is optional, but allows to keep dependencies in a separate place, so it ensures no conflicts with other Python projects on your computer\
 ```cd projectname\
-```python3 -m venv venv```
+```python3 -m venv venv
 ## References
 * [Flask documentation](https://flask.palletsprojects.com/en/2.0.x/)
 * [The New Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
