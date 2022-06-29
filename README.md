@@ -21,7 +21,7 @@ The main goal of developing this application was to get acquainted with the Flas
 * WTForms 3.0.1
 * The complete list of requirements is available in the requirements.txt file.
 ## Setup
-* [Install Python](https://www.python.org/downloads/) 3.8.10
+* [Install Python](https://www.python.org/downloads/)
 * Clone a repository on your computer
 ```
 git clone https://github.com/paulinakuczynska/mywwppe.git
@@ -38,11 +38,7 @@ python3 -m venv venv
 ```
 pip install -r requirements.txt
 ```
-If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from), or install packages separately:
-```
-pip install Flask
-pip install flask-wtf
-```
+If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from)
 * In the project folder set the FLASK_APP environment variable 
 ```
 export FLASK_APP=run.py
