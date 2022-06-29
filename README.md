@@ -36,7 +36,7 @@ python3 -m venv venv
 ```
 * Install dependencies from requirements.txt 
 ```
-pip install -r /path/to/requirements.txt
+pip install -r requirements.txt
 ```
 If any problem with that installation you can get help [here](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from), or install packages separately:
 ```
