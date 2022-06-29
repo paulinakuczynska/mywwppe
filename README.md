@@ -55,7 +55,8 @@ $ export FLASK_APP=run.py
 and run the application with 
 ```
 $ flask run
-```. Due to that launching the application and its environment is necessary each time it is started, it is convenient to create an alias, e.g.
+```
+Due to that launching the application and its environment is necessary each time it is started, it is convenient to create an alias, e.g.
 ```
 FLASK_APP=run.py FLASK_ENV=development flask run
 ```
